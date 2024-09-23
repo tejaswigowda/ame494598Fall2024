@@ -8,7 +8,7 @@ const char* ssid = "LGMesaroof";
 const char* password = "12345678";
 
 //Your Domain name with URL path or IP address with path
-const char* serverName = "http://www.google.com/";
+const char* serverName = "http://worldtimeapi.org/api/timezone/America/Phoenix";
 
 // the following variables are unsigned longs because the time, measured in
 // milliseconds, will quickly become a bigger number than can be stored in an int.
