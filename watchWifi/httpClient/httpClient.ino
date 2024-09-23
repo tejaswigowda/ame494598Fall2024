@@ -4,8 +4,8 @@
 
 
 
-const char* ssid = "iPhone";
-const char* password = "password";
+const char* ssid = "LGMesaroof";
+const char* password = "12345678";
 
 //Your Domain name with URL path or IP address with path
 const char* serverName = "http://www.google.com/";
