@@ -1,3 +1,6 @@
+// sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to 8080
+
+
 var express = require("express");
 var app = express();
 var bodyParser = require('body-parser');
