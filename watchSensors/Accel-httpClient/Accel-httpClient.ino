@@ -11,8 +11,8 @@ TFT_eSPI *tft;
 BMA *sensor;
 
 
-const char* ssid = "AMEIoT";
-const char* password = "ameclass";
+const char* ssid = "LGMesaroof";
+const char* password = "12345678";
 
 //Your Domain name with URL path or IP address with path
 const char* serverName = "http://192.168.2.14:3000/sendData";
