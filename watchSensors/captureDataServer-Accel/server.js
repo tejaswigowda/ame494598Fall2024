@@ -3,24 +3,35 @@ var app = express();
 var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
-var mongodb = require('mongodb');
 var hostname = process.env.HOSTNAME || 'localhost';
 var port = 1234;
 
 var accX, accY, accZ;
 
 // connect to database
-var server = new mongodb.Server("mongodb", 27017, {safe:true});
-var client = new mongodb.Db('sensorData', server);
+const { MongoClient } = require('mongodb');
+
+// Connection URL
+const url = 'mongodb://localhost:27017';
+const client = new MongoClient(url);
 
 
-client.open(function (err, p_client) {
-  client.collection('data', function(err, collection) {
-      collection.insert({a:1}, function(err, docs) {
-          client.close();
-      });
-  });
-});
+// Database Name
+const dbName = 'myProject';
+
+async function main() {
+  // Use connect method to connect to the server
+  await client.connect();
+  console.log('Connected successfully to server');
+  const db = client.db(dbName);
+  const collection = db.collection('documents');
+
+  // the following code examples can be pasted here...
+
+  return 'done.';
+}
+
+main();
 
 
 app.get("/", function (req, res) {
