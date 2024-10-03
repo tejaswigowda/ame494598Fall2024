@@ -39,10 +39,10 @@ app.get("/sendData", function (req, res) {
     }
     finally {
       client.close();
+      res.end(result);
     }
   })().catch(err => console.error(err));
   // close http connection
-  res.end(result);
 });
 
 
