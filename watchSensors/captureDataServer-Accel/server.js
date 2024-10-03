@@ -10,21 +10,7 @@ var accX, accY, accZ;
 let MongoClient = require('mongodb').MongoClient;
 const connectionString = 'mongodb://localhost:27017';
 
-(async function() {
-  let client = await MongoClient.connect(connectionString,
-    { useNewUrlParser: true });
 
-  let db = client.db('sensor');
-  try {
-    const res = await db.collection("data").insertOne({ x: 1 });
-
-    console.log(`res => ${JSON.stringify(res)}`);
-  }
-  finally {
-    client.close();
-  }
-})()
-  .catch(err => console.error(err));
 
 app.get("/", function (req, res) {
   res.redirect("index.html")
@@ -36,13 +22,26 @@ app.get("/sendData", function (req, res) {
   accZ = req.query.z
   req.query.time = new Date().getTime();
 
-  client.open(function (err, p_client) {
-    client.collection('accel', function (err, collection) {
-      collection.insert(req.query, function (err, docs) {
-        client.close();
-      });
-    });
-  });
+  (async function() {
+    let client = await MongoClient.connect(connectionString,
+      { useNewUrlParser: true });
+    let db = client.db('sensorData');
+    try {
+      const res = await db.collection("data").insertOne(req.query);
+      console.log(res);
+      // if error
+      if (res.insertId) {
+        res.end("1");
+      }
+      else {
+        res.end("0");
+      }
+    }
+    finally {
+      client.close();
+    }
+  })().catch(err => console.error(err));
+
 });
 
 
