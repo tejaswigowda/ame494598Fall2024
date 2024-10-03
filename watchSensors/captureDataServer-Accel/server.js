@@ -10,50 +10,50 @@ var accX, accY, accZ;
 let MongoClient = require('mongodb').MongoClient;
 const connectionString = 'mongodb://localhost:27017';
 
-    (async () => {
-        let client = await MongoClient.connect(connectionString,
-            { useNewUrlParser: true });
+(async function() {
+  let client = await MongoClient.connect(connectionString,
+    { useNewUrlParser: true });
 
-        let db = client.db('dbName');
-        try {
-           const res = await db.collection("collectionName").insertOne({ x: 1 });
+  let db = client.db('sensor');
+  try {
+    const res = await db.collection("data").insertOne({ x: 1 });
 
-           console.log(`res => ${JSON.stringify(res)}`);
-        }
-        finally {
-            client.close();
-        }
-    })()
-        .catch(err => console.error(err));
+    console.log(`res => ${JSON.stringify(res)}`);
+  }
+  finally {
+    client.close();
+  }
+})()
+  .catch(err => console.error(err));
 
 app.get("/", function (req, res) {
-    res.redirect("index.html")
+  res.redirect("index.html")
 });
 
 app.get("/sendData", function (req, res) {
-    accX = req.query.x
-    accY = req.query.y
-    accZ = req.query.z
-    req.query.time = new Date().getTime();
+  accX = req.query.x
+  accY = req.query.y
+  accZ = req.query.z
+  req.query.time = new Date().getTime();
 
-    client.open(function (err, p_client) {
-        client.collection('accel', function(err, collection) {
-            collection.insert(req.query, function(err, docs) {
-                client.close();
-            });
-        });
+  client.open(function (err, p_client) {
+    client.collection('accel', function (err, collection) {
+      collection.insert(req.query, function (err, docs) {
+        client.close();
+      });
     });
+  });
 });
 
 
 app.get("/getData", function (req, res) {
   var ret = {}
 
-    ret.x = accX; 
-    ret.y = accY; 
-    ret.z = accZ; 
-    
-    res.send(JSON.stringify(ret));
+  ret.x = accX;
+  ret.y = accY;
+  ret.z = accZ;
+
+  res.send(JSON.stringify(ret));
 });
 
 app.use(methodOverride());
