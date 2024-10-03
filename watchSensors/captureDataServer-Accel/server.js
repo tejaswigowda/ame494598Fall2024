@@ -32,7 +32,8 @@ app.get("/sendData", function (req, res) {
       result = await db.collection("data").insertOne(req.query);
       console.log(result);
       if(result.insertedId) {
-        result = result.insertedId;
+        // convert the insertedId to a string
+        result = result.insertedId.toString();
       }
     }
     finally {
