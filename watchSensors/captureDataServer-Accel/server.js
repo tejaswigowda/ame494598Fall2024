@@ -18,6 +18,7 @@ const client = new MongoClient(url);
 
 // Use connect method to connect to the server
 client.connect(function(err) {
+  console.log(err);
   console.log("Connected successfully to server");
   const db = client.db('myProject');
   const collection = db.collection('accel');
