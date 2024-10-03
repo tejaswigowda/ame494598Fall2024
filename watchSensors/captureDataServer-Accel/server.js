@@ -22,6 +22,8 @@ app.get("/sendData", function (req, res) {
   accZ = req.query.z
   req.query.time = new Date().getTime();
 
+  console.log(req.query);
+
   var result = "0";
   (async function() {
     let client = await MongoClient.connect(connectionString,
