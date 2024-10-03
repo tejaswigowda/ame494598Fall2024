@@ -31,8 +31,8 @@ app.get("/sendData", function (req, res) {
       console.log(req.query);
       result = await db.collection("data").insertOne(req.query);
       console.log(result);
-      if(result.insertId) {
-        result = result.insertId;
+      if(result.insertedId) {
+        result = result.insertedId;
       }
     }
     finally {
