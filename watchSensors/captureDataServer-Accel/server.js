@@ -37,7 +37,7 @@ app.get("/sendData", function (req, res) {
       client.close();
     }
   })().catch(err => console.error(err));
-  res.end(res.toString());
+  res.send(res.toString());
 });
 
 
