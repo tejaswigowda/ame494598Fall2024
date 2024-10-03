@@ -11,7 +11,16 @@ var accX, accY, accZ;
 
 // connect to database
 var server = new mongodb.Server("mongodb", 27017, {safe:true});
-var client = new mongodb.Db('test', server);
+var client = new mongodb.Db('sensorData', server);
+
+
+client.open(function (err, p_client) {
+  client.collection('data', function(err, collection) {
+      collection.insert({a:1}, function(err, docs) {
+          client.close();
+      });
+  });
+});
 
 
 app.get("/", function (req, res) {
