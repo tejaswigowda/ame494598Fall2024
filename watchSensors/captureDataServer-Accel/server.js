@@ -41,7 +41,6 @@ app.get("/sendData", function (req, res) {
       client.close();
     }
   })().catch(err => console.error(err));
-
 });
 
 
