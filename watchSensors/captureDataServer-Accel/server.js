@@ -18,6 +18,15 @@ const client = new MongoClient(url);
 
 // Database Name
 const dbName = 'myProject';
+// create db and collection
+client.connect(function(err) {
+  console.log("Connected successfully to server");
+  const db = client.db(dbName);
+  db.createCollection('inserts', function(err, res) {
+    console.log("Collection created!");
+  });
+  client.close();
+});
 
 // Use connect method to connect to the server
 client.connect(function(err) {
