@@ -17,13 +17,10 @@ app.get("/", function (req, res) {
 });
 
 app.get("/sendData", function (req, res) {
-  console.log(req.query);
   accX = req.query.x
   accY = req.query.y
   accZ = req.query.z
   req.query.time = new Date().getTime();
-
-  console.log(req.query);
 
   var result = "0";
   (async function() {
@@ -33,6 +30,7 @@ app.get("/sendData", function (req, res) {
     try {
       console.log(req.query);
       result = await db.collection("data").insertOne(req.query);
+      console.log(result);
       if(result.insertId) {
         result = result.insertId;
       }
