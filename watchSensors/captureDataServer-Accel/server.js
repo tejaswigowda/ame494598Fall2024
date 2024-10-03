@@ -7,32 +7,27 @@ var hostname = process.env.HOSTNAME || 'localhost';
 var port = 1234;
 
 var accX, accY, accZ;
+let MongoClient = require('mongodb').MongoClient;
+const connectionString = 'mongodb://localhost:27017';
 
-// connect to database
-const { MongoClient } = require('mongodb');
+    (async () => {
+        let client = await MongoClient.connect(connectionString,
+            { useNewUrlParser: true });
 
-// Connection URL
-const url = 'mongodb://localhost:27017';
-const client = new MongoClient(url);
+        let db = client.db('dbName');
+        try {
+           const res = await db.collection("collectionName").updateOne({ 
+               "someKey": someValue
+           }, { $set: someObj }, { upsert: true });
 
-
-// Use connect method to connect to the server
-client.connect(function(err) {
-  console.log(err);
-  console.log("Connected successfully to server");
-  const db = client.db('myProject');
-  const collection = db.collection('accel');
-  // Insert some documents
-  collection.insertMany([
-    {x : 1, y : 2, z : 3},
-    {x : 4, y : 5, z : 6},
-    {x : 7, y : 8, z : 9}
-  ], function(err, result) {
-    console.log("Inserted 3 documents into the collection");
-  });
-  client.close();
-});
-
+           console.log(`res => ${JSON.stringify(res)}`);
+        }
+        finally {
+            client.close();
+        }
+    })()
+        .catch(err => console.error(err));
+        
 app.get("/", function (req, res) {
     res.redirect("index.html")
 });
