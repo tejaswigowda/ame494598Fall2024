@@ -22,25 +22,22 @@ app.get("/sendData", function (req, res) {
   accZ = req.query.z
   req.query.time = new Date().getTime();
 
+  var res = "0";
   (async function() {
     let client = await MongoClient.connect(connectionString,
       { useNewUrlParser: true });
     let db = client.db('sensorData');
     try {
-      const res = await db.collection("data").insertOne(req.query);
-      console.log(res);
-      // if error
-      if (res.insertId) {
-        res.end("1");
-      }
-      else {
-        res.end("0");
+      res = await db.collection("data").insertOne(req.query);
+      if(res.insertId) {
+        res = res.insertId;
       }
     }
     finally {
       client.close();
     }
   })().catch(err => console.error(err));
+  res.end(res.toString());
 });
 
 
