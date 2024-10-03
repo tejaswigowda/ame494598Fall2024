@@ -28,11 +28,8 @@ app.get("/sendData", function (req, res) {
       { useNewUrlParser: true });
     let db = client.db('sensorData');
     try {
-      console.log(req.query);
       result = await db.collection("data").insertOne(req.query);
-      console.log(result);
       if(result.insertedId) {
-        // convert the insertedId to a string
         result = result.insertedId.toString();
         console.log(result);
       }
