@@ -42,7 +42,7 @@ app.get("/sendData", function (req, res) {
     }
   })().catch(err => console.error(err));
   // close http connection
-  res.end(result.toString());
+  res.end(result);
 });
 
 
