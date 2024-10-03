@@ -34,6 +34,7 @@ app.get("/sendData", function (req, res) {
       if(result.insertedId) {
         // convert the insertedId to a string
         result = result.insertedId.toString();
+        console.log(result);
       }
     }
     finally {
