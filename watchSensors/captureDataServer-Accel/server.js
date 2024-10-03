@@ -16,9 +16,7 @@ const connectionString = 'mongodb://localhost:27017';
 
         let db = client.db('dbName');
         try {
-           const res = await db.collection("collectionName").updateOne({ 
-               "someKey": someValue
-           }, { $set: someObj }, { upsert: true });
+           const res = await db.collection("collectionName").insertOne({ x: 1 });
 
            console.log(`res => ${JSON.stringify(res)}`);
         }
@@ -27,7 +25,7 @@ const connectionString = 'mongodb://localhost:27017';
         }
     })()
         .catch(err => console.error(err));
-        
+
 app.get("/", function (req, res) {
     res.redirect("index.html")
 });
