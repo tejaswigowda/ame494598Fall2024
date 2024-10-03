@@ -22,15 +22,15 @@ app.get("/sendData", function (req, res) {
   accZ = req.query.z
   req.query.time = new Date().getTime();
 
-  var res = "0";
+  var result = "0";
   (async function() {
     let client = await MongoClient.connect(connectionString,
       { useNewUrlParser: true });
     let db = client.db('sensorData');
     try {
-      res = await db.collection("data").insertOne(req.query);
-      if(res.insertId) {
-        res = res.insertId;
+      result = await db.collection("data").insertOne(req.query);
+      if(result.insertId) {
+        result = result.insertId;
       }
     }
     finally {
@@ -38,7 +38,7 @@ app.get("/sendData", function (req, res) {
     }
   })().catch(err => console.error(err));
   // close http connection
-  res.end("1");
+  res.end(result.toString());
 });
 
 
