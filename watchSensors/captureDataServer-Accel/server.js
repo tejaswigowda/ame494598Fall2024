@@ -19,20 +19,16 @@ const client = new MongoClient(url);
 // Database Name
 const dbName = 'myProject';
 
-async function main() {
-  // Use connect method to connect to the server
-  await client.connect();
-  console.log('Connected successfully to server');
+// Use connect method to connect to the server
+client.connect(function(err) {
+  console.log("Connected successfully to server");
   const db = client.db(dbName);
-  const collection = db.collection('documents');
-
-  // the following code examples can be pasted here...
-
-  return 'done.';
-}
-
-await main();
-
+  // insert document {a : 1}
+  db.collection('inserts').insertOne({a : 1}, function(err, r) {
+    console.log("Inserted 1 document into the collection");
+  });
+  client.close();
+});
 
 app.get("/", function (req, res) {
     res.redirect("index.html")
