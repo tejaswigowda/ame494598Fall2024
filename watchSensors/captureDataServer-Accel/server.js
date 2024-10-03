@@ -31,7 +31,7 @@ async function main() {
   return 'done.';
 }
 
-main();
+await main();
 
 
 app.get("/", function (req, res) {
