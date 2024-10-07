@@ -11,7 +11,7 @@ Please write a simple one-page step-by-step tutorial on :
 
 
 ## Resources
-- https://gist.github.com/tejaswigowda/f289e9bff13d152876e8d4b3281142f8
+- https://gist.github.com/tejaswigowda/2e65197acb0d5ed9776737c524824f1e
 - https://github.com/tejaswigowda/ame494598Fall2024/blob/main/watchSensors/DHT11Default/DHT11Default.ino
 
 
