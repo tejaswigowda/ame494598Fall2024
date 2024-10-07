@@ -9,7 +9,9 @@ var port = 1234;
 
 var t, h;
 
-var db = MS.db("mongodb://13.56.213.25:27017/sensorData");
+let MongoClient = require('mongodb').MongoClient;
+const connectionString = 'mongodb://localhost:27017';
+
 
 app.get("/", function (req, res) {
     res.redirect("index.html")
@@ -18,11 +20,24 @@ app.get("/", function (req, res) {
 app.get("/sendData", function (req, res) {
   t = req.query.t;
   h = req.query.h;
-    req.query.time = new Date().getTime();
+  req.query.time = new Date().getTime();
 
-    db.collection("data").insert(req.query, function(result, err){
-      res.send("1");
-    });
+  (async function() {
+    let client = await MongoClient.connect(connectionString,
+      { useNewUrlParser: true });
+    let db = client.db('sensorData');
+    try {
+      result = await db.collection("data").insertOne(req.query);
+      if(result.insertedId) {
+        result = result.insertedId.toString();
+        console.log(result);
+      }
+    }
+    finally {
+      client.close();
+      res.end(result);
+    }
+  })().catch(err => console.error(err));
 });
 
 
