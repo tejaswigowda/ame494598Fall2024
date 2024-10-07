@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "errorhandler": "^1.5.1",
+    "express": "^4.21.0",
+    "method-override": "^3.0.0",
+    "mongodb": "^6.9.0"
+  }
+}
