@@ -3,7 +3,6 @@ var app = express();
 var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
-var MS = require("mongoskin");
 var hostname = process.env.HOSTNAME || 'localhost';
 var port = 1234;
 
