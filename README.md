@@ -10,4 +10,4 @@ Slides: https://docs.google.com/presentation/d/1G7oTScIrkpOheQXkeKqElcCB8R8JAgQI
 
 MongodB install: https://www.mongodb.com/docs/v5.0/tutorial/install-mongodb-on-os-x/
 
-Node + mongo on EC2: https://gist.github.com/tejaswigowda/2e65197acb0d5ed9776737c524824f1e
+Node + mongo on EC2: [https://gist.github.com/tejaswigowda/26a8c160bbf8c1249534632de1519115](https://gist.github.com/tejaswigowda/26a8c160bbf8c1249534632de1519115)
