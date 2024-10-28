@@ -36,9 +36,18 @@ app.get("/getAverage", function (req, res) {
 });
 
 app.get("/getLatest", function (req, res) {
-  db.collection("dataWeather").find({}).sort({time:-1}).limit(10).toArray(function(err, result){
-    res.send(JSON.stringify(result));
-  });
+  (async function() {
+    let client = await MongoClient.connect(connectionString,
+      { useNewUrlParser: true });
+    let db = client.db('sensorData');
+    try {
+      let result = await db.collection("data").find().sort({time:-1}).limit(1).toArray();
+      res.send(JSON.stringify(result));
+    }
+    finally {
+      client.close();
+    }
+  })().catch(err => console.error(err));
 });
 
 app.get("/getData", function (req, res) {
