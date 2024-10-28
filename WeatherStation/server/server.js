@@ -64,6 +64,7 @@ app.get("/setValue", function (req, res) {
 		h: VALUEh,
 		time: VALUEtime
 	}
+  res.send(VALUEtime.toString());
   (async function() {
     let client = await MongoClient.connect(connectionString,
       { useNewUrlParser: true });
@@ -79,7 +80,6 @@ app.get("/setValue", function (req, res) {
       client.close();
     }
   })().catch(err => console.error(err));
-  res.send(VALUEtime.toString());
 });
 
 
