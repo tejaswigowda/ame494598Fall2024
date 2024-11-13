@@ -53,9 +53,7 @@ app.get("/getLatest", function (req, res) {
 app.get("/getData", function (req, res) {
   var from = parseInt(req.query.from);
   var to = parseInt(req.query.to);
-  db.collection("dataWeather").find({time:{$gt:from, $lt:to}}).sort({time:-1}).toArray(function(err, result){
-    res.send(JSON.stringify(result));
-  });
+ // get values from database, where time is between from and to abd return it as JSON
 });
 
 
