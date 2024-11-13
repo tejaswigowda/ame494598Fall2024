@@ -1,6 +1,6 @@
 # Assignment 6
 
-**Due Nov 13th before class**
+**Due Nov 18th before midnight**
 
 ## Task
 
