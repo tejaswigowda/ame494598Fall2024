@@ -1,5 +1,7 @@
 # Finals
 
+** Due Dec 13th before midnight **
+
 ## Project Video
 
 Please make a 3-5 minute video of your project. This video should include:
